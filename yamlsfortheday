@@ -18,3 +18,21 @@ spec:
         secretKeyRef:
           name: <<nameofsecret>>
           key: password
+
+apiVersion: v1
+kind: Pod
+metadata:
+  name: mypod
+  namespace: <<namespacename>>
+spec:
+  containers:
+  - name: mypod
+    image: nginx
+    volumeMounts:
+    - name: config
+      mountPath: "/etc/vols"
+      readOnly: true
+  volumes:
+  - name: config
+    secret:
+      secretName: <<nameofsecret>>
