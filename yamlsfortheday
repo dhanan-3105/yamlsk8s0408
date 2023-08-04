@@ -51,3 +51,16 @@ data:
   keys: | 
     image.public.key=771 
     rsa.public.key=42
+
+kind: Pod 
+apiVersion: v1 
+metadata:
+  name: pod-from-cm 
+spec:
+  containers:
+    - name: env-var-configmap
+      image: nginx
+      envFrom:
+        - configMapRef:
+            name: example-configmap
+            
