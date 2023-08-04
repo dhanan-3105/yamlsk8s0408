@@ -64,3 +64,19 @@ spec:
         - configMapRef:
             name: example-configmap
             
+kind: Pod 
+apiVersion: v1 
+metadata:
+  name: pod-from-cm-volume
+  namespace: <<namespace-name>>
+spec:
+  containers:
+    - name: env-var-configmap
+      image: nginx
+      volumeMounts:
+        - mountPath: /config
+          name: appconfig-data-volume
+  volumes:
+    - name: appconfig-data-volume
+      configMap:
+         name: <<config-map-name>>
